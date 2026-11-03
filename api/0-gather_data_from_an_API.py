@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 """
-Gathers task progress data for a given employee ID from a REST API
+This module gathers task progress data for a given employee ID from a REST API
 and prints the completed tasks statistics to the standard output.
 """
 import requests
@@ -31,10 +31,13 @@ if __name__ == "__main__":
     todos_data = todos_response.json()
 
     total_tasks = len(todos_data)
-    completed_tasks = [task for task in todos_data if task.get("completed") is True]
+    completed_tasks = [
+        task for task in todos_data if task.get("completed") is True
+    ]
     number_of_done_tasks = len(completed_tasks)
 
-    print(f"Employee {employee_name} is done with tasks({number_of_done_tasks}/{total_tasks}):")
+    print(f"Employee {employee_name} is done with "
+          f"tasks({number_of_done_tasks}/{total_tasks}):")
 
     for task in completed_tasks:
         print(f"\t {task.get('title')}")
