@@ -1,17 +1,21 @@
 #!/usr/bin/python3
+"""
+This module exports an employee's TODO list data to a CSV file.
+
+It takes an employee ID parameter from the command line, retrieves data
+from a REST API, and formats the output into a specific CSV structure.
+"""
 import csv
 import requests
 import sys
 
 if __name__ == "__main__":
     if len(sys.argv) < 2:
-        print("Missing employee ID argument")
         sys.exit(1)
 
     try:
         employee_id = int(sys.argv[1])
     except ValueError:
-        print("Employee ID must be an integer")
         sys.exit(1)
 
     base_url = "https://jsonplaceholder.typicode.com/"
@@ -20,14 +24,12 @@ if __name__ == "__main__":
 
     user_response = requests.get(user_url)
     if user_response.status_code != 200:
-        print(f"Failed to fetch user. Status code: {user_response.status_code}")
         sys.exit(1)
     user_data = user_response.json()
     username = user_data.get("username")
 
     todos_response = requests.get(todos_url)
     if todos_response.status_code != 200:
-        print(f"Failed to fetch TODOs. Status code: {todos_response.status_code}")
         sys.exit(1)
     todos_data = todos_response.json()
 
