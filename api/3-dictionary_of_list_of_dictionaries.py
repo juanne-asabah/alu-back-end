@@ -1,10 +1,14 @@
 #!/usr/bin/python3
+"""
+This module gathers task data for all employees from a REST API
+and exports the records into a single structured JSON file.
+"""
 import json
 import requests
 
 if __name__ == "__main__":
     base_url = "https://jsonplaceholder.typicode.com/"
-    
+
     users_response = requests.get(f"{base_url}/users")
     if users_response.status_code != 200:
         exit(1)
@@ -15,7 +19,9 @@ if __name__ == "__main__":
         exit(1)
     todos_data = todos_response.json()
 
-    user_map = {user.get("id"): user.get("username") for user in users_data}
+    user_map = {
+        user.get("id"): user.get("username") for user in users_data
+    }
 
     all_data = {}
     for user_id in user_map:
@@ -32,3 +38,4 @@ if __name__ == "__main__":
 
     with open("todo_all_employees.json", mode="w", encoding="utf-8") as file:
         json.dump(all_data, file)
+
