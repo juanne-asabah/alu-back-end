@@ -15,7 +15,7 @@ if __name__ == "__main__":
     except ValueError:
         sys.exit(1)
 
-    base_url = "https://typicode.com"
+    base_url = "https://jsonplaceholder.typicode.com"
     user_url = f"{base_url}/users/{employee_id}"
     todos_url = f"{base_url}/todos?userId={employee_id}"
 
@@ -31,14 +31,10 @@ if __name__ == "__main__":
     todos_data = todos_response.json()
 
     total_tasks = len(todos_data)
-    completed_tasks = [
-        task for task in todos_data if task.get("completed") is True
-    ]
+    completed_tasks = [task for task in todos_data if task.get("completed") is True]
     number_of_done_tasks = len(completed_tasks)
 
-    # Broken into two lines to stay under the 79 character limit
-    print(f"Employee {employee_name} is done with "
-          f"tasks({number_of_done_tasks}/{total_tasks}):")
+    print(f"Employee {employee_name} is done with tasks({number_of_done_tasks}/{total_tasks}):")
 
     for task in completed_tasks:
         print(f"\t {task.get('title')}")
