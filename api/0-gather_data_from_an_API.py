@@ -1,5 +1,8 @@
 #!/usr/bin/python3
-
+"""
+This module gathers task progress data for a given employee ID from a REST API
+and prints the completed tasks statistics to the standard output.
+"""
 import requests
 import sys
 
@@ -12,7 +15,7 @@ if __name__ == "__main__":
     except ValueError:
         sys.exit(1)
 
-    base_url = "https://jsonplaceholder.typicode.com/"
+    base_url = "https://jsonplaceholder.typicode.com"
     user_url = f"{base_url}/users/{employee_id}"
     todos_url = f"{base_url}/todos?userId={employee_id}"
 
