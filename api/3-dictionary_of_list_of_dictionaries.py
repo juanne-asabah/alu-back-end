@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 """
-This module gathers task data for all employees from a REST API
+Gathers task data for all employees from a REST API
 and exports the records into a single structured JSON file.
 """
 import json
