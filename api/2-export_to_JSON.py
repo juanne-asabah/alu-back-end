@@ -1,4 +1,10 @@
 #!/usr/bin/python3
+"""
+This module exports an employee's TODO list records to a JSON file.
+
+It takes an employee ID parameter from the command line, retrieves data
+from a REST API, and formats the output into a nested JSON structure.
+"""
 import json
 import requests
 import sys
@@ -12,7 +18,7 @@ if __name__ == "__main__":
     except ValueError:
         sys.exit(1)
 
-    base_url = "https://jsonplaceholder.typicode.com/"
+    base_url = "https://typicode.com"
     user_url = f"{base_url}/users/{employee_id}"
     todos_url = f"{base_url}/todos?userId={employee_id}"
 
